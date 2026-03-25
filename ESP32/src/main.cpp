@@ -7,7 +7,7 @@
 #include <Preferences.h>  // Thư viện lưu trữ dữ liệu vào bộ nhớ Flash
 
 // --- ĐÃ ĐỔI CHÂN DHT11 SANG 15 ---
-#define DHTPIN 15  
+#define DHTPIN 14
 #define DHTTYPE DHT11
 
 // --- CẤU HÌNH NRF24L01 ---
