@@ -1,0 +1,181 @@
+/* style.css - Electrical Cockpit Theme */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&display=swap');
+
+:root {
+    --bg-color: #0d1117; /* Nền tối sâu */
+    --card-bg: #161b22; /* Nền panel */
+    --text-main: #c9d1d9; /* Chữ chính xám sáng */
+    --accent-temp: #00ffff; /* Xanh Cyan cho Nhiệt độ */
+    --accent-hum: #33ff33; /* Xanh lá điện cho Độ ẩm */
+    --accent-led: #ff9900; /* Cam cho điều khiển LED */
+    --border-color: #30363d; /* Viền tối */
+    --glow-opacity: 0.6;
+    --font-tech: 'Orbitron', sans-serif; /* Font tiêu đề kĩ thuật */
+    --font-value: 'Roboto Mono', monospace; /* Font số kỹ thuật */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Roboto Mono', monospace;
+    overflow-x: hidden;
+}
+
+/* Navbar Style */
+.navbar-custom {
+    background-color: rgba(22, 27, 34, 0.95);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.navbar-brand {
+    font-family: var(--font-tech);
+    font-weight: bold;
+    color: var(--accent-temp) !important;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--accent-temp);
+}
+
+.device-id-panel {
+    border: 1px solid var(--border-color);
+    background-color: rgba(0,0,0,0.3);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+#device_id_display {
+    color: var(--accent-hum);
+    font-weight: bold;
+}
+
+/* Card/Panel Styling */
+.card-electrical {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-electrical:hover {
+    border-color: #555;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+/* Glow effects for specific cards */
+.glow-temp { border-color: rgba(0, 255, 255, 0.4); box-shadow: 0 0 15px rgba(0, 255, 255, 0.15); }
+.glow-hum { border-color: rgba(51, 255, 51, 0.4); box-shadow: 0 0 15px rgba(51, 255, 51, 0.15); }
+.glow-led { border-color: rgba(255, 153, 0, 0.4); box-shadow: 0 0 15px rgba(255, 153, 0, 0.15); }
+
+.card-header-electrical {
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 15px;
+    background-color: rgba(0,0,0,0.2);
+}
+
+/* Digital Displays */
+.display-value {
+    font-family: var(--font-value);
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+#temp_display { color: var(--accent-temp); text-shadow: 0 0 10px var(--accent-temp); font-size: 2.5rem; }
+#hum_display { color: var(--accent-hum); text-shadow: 0 0 10px var(--accent-hum); font-size: 2.5rem; }
+
+/* Gauge styling overide */
+canvas {
+    margin-top: 10px;
+}
+
+/* Control Buttons */
+.btn-tech {
+    font-family: var(--font-tech);
+    text-transform: uppercase;
+    border: 2px solid;
+    background: transparent;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+}
+
+.btn-success-tech {
+    border-color: var(--accent-hum);
+    color: var(--accent-hum);
+}
+
+.btn-success-tech:hover {
+    background-color: var(--accent-hum);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-hum);
+}
+
+.btn-danger-tech {
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+}
+
+.btn-danger-tech:hover {
+    background-color: #ff4d4d;
+    color: #000;
+    box-shadow: 0 0 20px #ff4d4d;
+}
+
+.btn-primary-tech {
+    border-color: var(--accent-led);
+    color: var(--accent-led);
+}
+
+.btn-primary-tech:hover {
+    background-color: var(--accent-led);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-led);
+}
+
+.btn-secondary-tech {
+    border-color: #888;
+    color: #888;
+}
+
+.btn-secondary-tech:hover {
+    background-color: #888;
+    color: #000;
+}
+
+/* Log Box styling */
+.log-box-electrical {
+    height: 150px;
+    overflow-y: auto;
+    background-color: #0a0a0d;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    font-family: var(--font-value);
+    color: #55ff55; /* Kiểu console xanh */
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+/* Input form styling */
+.form-control-electrical {
+    background-color: #0a0a0d;
+    border: 1px solid var(--border-color);
+    color: #fff;
+    font-family: var(--font-value);
+}
+
+.form-control-electrical:focus {
+    background-color: #111;
+    border-color: var(--accent-temp);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Customize Chart appearance via CSS properties where possible */
+canvas#tempChart, canvas#humChart {
+    max-height: 250px;
+}

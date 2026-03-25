@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ESP32 Electrical Cockpit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-gauges/gauge.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-custom shadow-sm">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">ESP32 Electrical Cockpit</span>
+            <div class="device-id-panel text-end">
+                <span class="small text-muted">ACTIVE ID:</span>
+                <span id="device_id_display">WAITING...</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div class="card card-electrical glow-temp">
+                    <div class="card-header-electrical">Temperature Sensor</div>
+                    <div class="card-body">
+                        <canvas id="tempGauge"></canvas>
+                        <h2 id="temp_display" class="display-value">-- °C</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <div class="card card-electrical glow-hum">
+                    <div class="card-header-electrical">Humidity Sensor</div>
+                    <div class="card-body">
+                        <canvas id="humGauge"></canvas>
+                        <h2 id="hum_display" class="display-value">-- %</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="card card-electrical glow-temp">
+                    <div class="card-header-electrical">Temperature Trend</div>
+                    <div class="card-body p-1">
+                        <canvas id="tempChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-electrical glow-hum">
+                    <div class="card-header-electrical">Humidity Trend</div>
+                    <div class="card-body p-1">
+                        <canvas id="humChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="card card-electrical glow-led">
+                    <div class="card-header-electrical">LED Actuator Control</div>
+                    <div class="card-body text-center d-flex justify-content-center gap-3">
+                        <button class="btn btn-tech btn-success-tech" onclick="ON_LED()">Actuator ON</button>
+                        <button class="btn btn-tech btn-danger-tech" onclick="OFF_LED()">Actuator OFF</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-electrical">
+                    <div class="card-header-electrical">MQTT Network Configuration</div>
+                    <div class="card-body p-2">
+                        <div class="row g-2 mb-2 small">
+                            <div class="col-7"><input class="form-control form-control-sm form-control-electrical" id="host" value="localhost"></div>
+                            <div class="col-5"><input class="form-control form-control-sm form-control-electrical" id="port" value="8080"></div>
+                        </div>
+                        <div class="row g-2 mb-2 small">
+                            <div class="col-6"><input class="form-control form-control-sm form-control-electrical" id="username" value="GiaThanh"></div>
+                            <div class="col-6"><input class="form-control form-control-sm form-control-electrical" id="password" type="password" value="123"></div>
+                        </div>
+                        <input class="form-control form-control-sm form-control-electrical mb-2 small" id="topic_s" value="esp32/#">
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-tech btn-primary-tech" onclick="connectMQTT()">Connect</button>
+                            <button class="btn btn-sm btn-tech btn-secondary-tech" onclick="disconnectMQTT()">Disconnect</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2 mb-4">
+            <div class="col-md-12">
+                <div class="card card-electrical log-card">
+                    <div class="card-header-electrical">System Telemetry Log</div>
+                    <div class="card-body">
+                        <div id="mqtt_messages" class="log-box log-box-electrical log-box-custom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="demo.js"></script>
+</body>
+
+</html>

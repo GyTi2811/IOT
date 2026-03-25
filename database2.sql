@@ -1,0 +1,1 @@
+SELECT * FROM iot_mqtt.sensor_data;

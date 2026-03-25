@@ -1,0 +1,4 @@
+adafruit/DHT sensor library
+knolleary/PubSubClient
+nrf24/RF24
+bblanchon/ArduinoJson
